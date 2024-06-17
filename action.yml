@@ -1,0 +1,34 @@
+name: Dart & Flutter - Read package version
+description: 'Reads the package semantic version from the pubspec.yaml'
+author: RCSandberg
+branding:
+  icon: 'type'
+  color: 'green'
+inputs:
+  path:
+    description: "Path to pubspec.yaml. Defaults to: ./pubspec.yaml"
+    required: false
+    default: "./pubspec.yaml"
+outputs:
+  package-semantic-version:
+    description: "Package semantic version"
+    value: ${{ steps.semantic-version.outputs.package-semantic-version }}
+  package-version:
+    description: "Package version"
+    value: ${{ steps.semantic-version.outputs.package-version }}
+  package-build-version:
+    description: "Package build version"
+    value: ${{ steps.semantic-version.outputs.package-build-version }}
+runs:
+  using: "composite"
+  steps:
+    - name: Extract semantic version
+      id: semantic-version
+      shell: bash
+      run: |
+        SEMVER=`cat ${{inputs.path}} | grep -m 1 -o 'version:[^:]*' | cut -f2 -d":" | xargs`
+        echo "package-semantic-version=$SEMVER" >> $GITHUB_OUTPUT
+        VER=`echo $SEMVER | cut -f 1 -d"+"`
+        echo "package-version=$VER" >> $GITHUB_OUTPUT
+        BUILDVER=`echo $SEMVER | cut -f 2 -d"+"`
+        echo "package-build-version=$BUILDVER" >> $GITHUB_OUTPUT
