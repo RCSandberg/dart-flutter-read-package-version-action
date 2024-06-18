@@ -74,7 +74,7 @@ jobs:
         name: 'Complex: Assert pre-release version'
         with:
           expected: alpha-a.b-c-thisisfine
-          actual: ${{ steps.call-action-2.outputs.package-prelease }}
+          actual: ${{ steps.call-action-2.outputs.package-prerelease }}
       - uses: nick-fields/assert-action@v2
         name: 'Complex: Assert build metadata'
         with:
