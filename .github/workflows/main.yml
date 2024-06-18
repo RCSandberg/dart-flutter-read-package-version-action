@@ -13,60 +13,70 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       #
-      # Trivial version
+      # Trivial
       #
       - uses: ./
         id: call-action
         with:
           path: assets/with-build.yaml
       - uses: nick-fields/assert-action@v2
+        name: 'Trivial: Assert semantic version'
         with:
           expected: 1.2.3+4
           actual: ${{ steps.call-action.outputs.package-semantic-version }}
       - uses: nick-fields/assert-action@v2
+        name: 'Trivial: Assert version'
         with:
           expected: 1.2.3
           actual: ${{ steps.call-action.outputs.package-version }}
-      # - uses: nick-fields/assert-action@v2
-      #   with:
-      #     expected: 4
-      #     actual: ${{ steps.call-action.outputs.package-buildmetadata }}
+      - uses: nick-fields/assert-action@v2
+        name: 'Trivial: Assert build metadata'
+        with:
+          expected: 4
+          actual: ${{ steps.call-action.outputs.package-buildmetadata }}
 
       - run: echo "Read semantic version ${{ steps.call-action.outputs.package-semantic-version }}"
       - run: echo "Read version ${{ steps.call-action.outputs.package-version }}"
       - run: echo "Read version ${{ steps.call-action.outputs.package-buildmetadata }}"
       #
-      # Semantic version with pre-release and build
+      # Complex with pre-release and build
       #
       - uses: ./
         id: call-action-2
         with:
           path: assets/with-prerelease-and-build.yaml
       - uses: nick-fields/assert-action@v2
+        name: 'Complex: Assert semantic version'
         with:
           expected: 1337.42.666-alpha-a.b-c-thisisfine+build.1-leia.oliver.1-its-okay
           actual: ${{ steps.call-action-2.outputs.package-semantic-version }}
       - uses: nick-fields/assert-action@v2
+        name: 'Complex: Assert version'
         with:
           expected: 1337.42.666
           actual: ${{ steps.call-action-2.outputs.package-version }}
       - uses: nick-fields/assert-action@v2
+        name: 'Complex: Assert major version'
         with:
           expected: 1337
           actual: ${{ steps.call-action-2.outputs.package-major }}
       - uses: nick-fields/assert-action@v2
+        name: 'Complex: Assert minor version'
         with:
           expected: 42
           actual: ${{ steps.call-action-2.outputs.package-minor }}
       - uses: nick-fields/assert-action@v2
+        name: 'Complex: Assert patch version'
         with:
           expected: 666
           actual: ${{ steps.call-action-2.outputs.package-patch }}
       - uses: nick-fields/assert-action@v2
+        name: 'Complex: Assert pre-release version'
         with:
           expected: alpha-a.b-c-thisisfine
           actual: ${{ steps.call-action-2.outputs.package-prelease }}
       - uses: nick-fields/assert-action@v2
+        name: 'Complex: Assert build metadata'
         with:
           expected: build.1-leia.oliver.1-its-okay
           actual: ${{ steps.call-action-2.outputs.package-buildmetadata }}
