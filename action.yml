@@ -43,4 +43,4 @@ runs:
       run: |
         SEMVER=`cat ${{inputs.path}} | grep -m 1 -o 'version:[^:]*' | cut -f2 -d":" | xargs`
         echo "semantic-version=$SEMVER" >> $GITHUB_OUTPUT
-        python ./read_semantic_version.py $SEMVER
+        python ${{ github.action_path }}/read_semantic_version.py $SEMVER
