@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # With path set implicitly to default value
-      - uses: RCSandberg/dart-read-package-semantic-version-action@v1.0.0
+      - uses: RCSandberg/dart-read-package-semantic-version-action@v2
         id: call-action-1
       - run: echo "Read semantic version ${{ steps.call-action-1.outputs.semantic-version }}"
       - run: echo "Read version ${{ steps.call-action-1.outputs.version }}"
@@ -27,7 +27,7 @@ jobs:
 
 
       # With path set explicitly
-      - uses: RCSandberg/dart-read-package-semantic-version-action@v1.0.0
+      - uses: RCSandberg/dart-read-package-semantic-version-action@v2
         id: call-action-2
         with:
           path: path/to/pubspec.yaml
