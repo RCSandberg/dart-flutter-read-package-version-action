@@ -30,10 +30,10 @@ jobs:
       - uses: nick-fields/assert-action@v2
         with:
           expected: 4
-          actual: ${{ steps.call-action.outputs.package-build-version }}
+          actual: ${{ steps.call-action.outputs.package-build }}
       - run: echo "Read semantic version ${{ steps.call-action.outputs.package-semantic-version }}"
       - run: echo "Read version ${{ steps.call-action.outputs.package-version }}"
-      - run: echo "Read version ${{ steps.call-action.outputs.package-build-version }}"
+      - run: echo "Read version ${{ steps.call-action.outputs.package-buildmetadata }}"
       #
       # Semantic version with pre-release and build
       #
@@ -68,4 +68,4 @@ jobs:
       - uses: nick-fields/assert-action@v2
         with:
           expected: build.1-leia.oliver.1-its-okay
-          actual: ${{ steps.call-action-2.outputs.package-build-version }}
+          actual: ${{ steps.call-action-2.outputs.package-buildmetadata }}
