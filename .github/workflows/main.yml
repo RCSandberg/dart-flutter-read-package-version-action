@@ -15,25 +15,26 @@ jobs:
       #
       # Trivial version
       #
-      # - uses: ./
-      #   id: call-action
-      #   with:
-      #     path: assets/with-build.yaml
-      # - uses: nick-fields/assert-action@v2
-      #   with:
-      #     expected: 1.2.3+4
-      #     actual: ${{ steps.call-action.outputs.package-semantic-version }}
-      # - uses: nick-fields/assert-action@v2
-      #   with:
-      #     expected: 1.2.3
-      #     actual: ${{ steps.call-action.outputs.package-version }}
-      # - uses: nick-fields/assert-action@v2
-      #   with:
-      #     expected: 4
-      #     actual: ${{ steps.call-action.outputs.package-buildmetadata }}
-      # - run: echo "Read semantic version ${{ steps.call-action.outputs.package-semantic-version }}"
-      # - run: echo "Read version ${{ steps.call-action.outputs.package-version }}"
-      # - run: echo "Read version ${{ steps.call-action.outputs.package-buildmetadata }}"
+      - uses: ./
+        id: call-action
+        with:
+          path: assets/with-build.yaml
+      - uses: nick-fields/assert-action@v2
+        with:
+          expected: 1.2.3+4
+          actual: ${{ steps.call-action.outputs.package-semantic-version }}
+      - uses: nick-fields/assert-action@v2
+        with:
+          expected: 1.2.3
+          actual: ${{ steps.call-action.outputs.package-version }}
+      - uses: nick-fields/assert-action@v2
+        with:
+          expected: 4
+          actual: ${{ steps.call-action.outputs.package-buildmetadata }}
+
+      - run: echo "Read semantic version ${{ steps.call-action.outputs.package-semantic-version }}"
+      - run: echo "Read version ${{ steps.call-action.outputs.package-version }}"
+      - run: echo "Read version ${{ steps.call-action.outputs.package-buildmetadata }}"
       #
       # Semantic version with pre-release and build
       #
