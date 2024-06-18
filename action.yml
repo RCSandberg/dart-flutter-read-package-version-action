@@ -1,5 +1,5 @@
 name: Dart & Flutter - Read package version
-description: 'Extracts major, minor, patch & pre-release version, as well as build metadata from the package semantic version in the pubspec.yaml.'
+description: 'Extracts major, minor, patch, pre-release and build versions from the package semantic version in the pubspec.yaml'
 author: RCSandberg
 branding:
   icon: 'type'
