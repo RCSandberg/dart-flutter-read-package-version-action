@@ -16,19 +16,31 @@ outputs:
   package-version:
     description: "Package version"
     value: ${{ steps.semantic-version.outputs.package-version }}
-  package-build-version:
-    description: "Package build version"
-    value: ${{ steps.semantic-version.outputs.package-build-version }}
+  package-major:
+    description: "Package major version"
+    value: ${{ steps.semantic-version.outputs.package-major }}
+  package-minor:
+    description: "Package minor version"
+    value: ${{ steps.semantic-version.outputs.package-minor }}
+  package-patch:
+    description: "Package patch version"
+    value: ${{ steps.semantic-version.outputs.package-patch }}
+  package-prerelease:
+    description: "Package pre-release version"
+    value: ${{ steps.semantic-version.outputs.package-prerelease }}
+  package-buildmetadata:
+    description: "Package build metadata"
+    value: ${{ steps.semantic-version.outputs.package-buildmetadata }}
 runs:
   using: "composite"
   steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10' 
     - name: Extract semantic version
       id: semantic-version
       shell: bash
       run: |
         SEMVER=`cat ${{inputs.path}} | grep -m 1 -o 'version:[^:]*' | cut -f2 -d":" | xargs`
         echo "package-semantic-version=$SEMVER" >> $GITHUB_OUTPUT
-        VER=`echo $SEMVER | cut -f 1 -d"+"`
-        echo "package-version=$VER" >> $GITHUB_OUTPUT
-        BUILDVER=`echo $SEMVER | cut -f 2 -d"+"`
-        echo "package-build-version=$BUILDVER" >> $GITHUB_OUTPUT
+        python ./read_semantic_version.py $SEMVER
