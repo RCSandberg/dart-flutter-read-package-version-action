@@ -26,8 +26,8 @@ if match:
             f.write(f"package-major={match.group('major')}\n")
             f.write(f"package-minor={match.group('minor')}\n")
             f.write(f"package-patch={match.group('patch')}\n")
-            f.write(f"package-prerelease={match.group('prerelease') or ""}\n")
-            f.write(f"package-build={match.group('buildmetadata') or ""}\n")
+            f.write(f"package-prerelease={match.group('prerelease') or ''}\n")
+            f.write(f"package-build={match.group('buildmetadata') or ''}\n")
 
     # # Example usage: accessing the environment variables
     print("Major:", match.group('major'))
