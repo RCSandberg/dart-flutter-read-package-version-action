@@ -13,13 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: RCSandberg/dart-read-package-semantic-version-action@main
-        id: call-action
+
+      # With path set implicitly to default value
+      - uses: RCSandberg/dart-read-package-semantic-version-action@v1.0.0
+        id: call-action-1
+      - run: echo "Read semantic version ${{ steps.call-action-1.outputs.package-semantic-version }}"
+      - run: echo "Read version ${{ steps.call-action-1.outputs.package-version }}"
+      - run: echo "Read build version ${{ steps.call-action-1.outputs.package-build-version }}"
+
+
+      # With path set explicitly
+      - uses: RCSandberg/dart-read-package-semantic-version-action@v1.0.0
+        id: call-action-2
         with:
-          path: assets/with-build.yaml
-      - run: echo "Read semantic version ${{ steps.call-action.outputs.package-semantic-version }}"
-      - run: echo "Read version ${{ steps.call-action.outputs.package-version }}"
-      - run: echo "Read version ${{ steps.call-action.outputs.package-build-version }}"
+          path: path/to/pubspec.yaml
+      - run: echo "Read semantic version ${{ steps.call-action-2.outputs.package-semantic-version }}"
+      - run: echo "Read version ${{ steps.call-action-2.outputs.package-version }}"
+      - run: echo "Read build version ${{ steps.call-action-2.outputs.package-build-version }}"
 ```
 
 ## Output Example
