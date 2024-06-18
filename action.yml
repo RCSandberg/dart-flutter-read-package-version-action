@@ -1,9 +1,9 @@
 name: Dart & Flutter - Read package version
-description: 'Reads the package semantic version from the pubspec.yaml'
+description: 'Extracts major, minor, patch & pre-release version, as well as build metadata from the package semantic version in the pubspec.yaml.'
 author: RCSandberg
 branding:
   icon: 'type'
-  color: 'green'
+  color: 'blue'
 inputs:
   path:
     description: "Path to pubspec.yaml. Defaults to: ./pubspec.yaml"
