@@ -10,27 +10,27 @@ inputs:
     required: false
     default: "./pubspec.yaml"
 outputs:
-  package-semantic-version:
+  semantic-version:
     description: "Package semantic version"
-    value: ${{ steps.semantic-version.outputs.package-semantic-version }}
-  package-version:
+    value: ${{ steps.semantic-version.outputs.semantic-version }}
+  version:
     description: "Package version"
-    value: ${{ steps.semantic-version.outputs.package-version }}
-  package-major:
+    value: ${{ steps.semantic-version.outputs.version }}
+  major:
     description: "Package major version"
-    value: ${{ steps.semantic-version.outputs.package-major }}
-  package-minor:
+    value: ${{ steps.semantic-version.outputs.major }}
+  minor:
     description: "Package minor version"
-    value: ${{ steps.semantic-version.outputs.package-minor }}
-  package-patch:
+    value: ${{ steps.semantic-version.outputs.minor }}
+  patch:
     description: "Package patch version"
-    value: ${{ steps.semantic-version.outputs.package-patch }}
-  package-prerelease:
+    value: ${{ steps.semantic-version.outputs.patch }}
+  prerelease:
     description: "Package pre-release version"
-    value: ${{ steps.semantic-version.outputs.package-prerelease }}
-  package-buildmetadata:
+    value: ${{ steps.semantic-version.outputs.prerelease }}
+  buildmetadata:
     description: "Package build metadata"
-    value: ${{ steps.semantic-version.outputs.package-buildmetadata }}
+    value: ${{ steps.semantic-version.outputs.buildmetadata }}
 runs:
   using: "composite"
   steps:
@@ -42,5 +42,5 @@ runs:
       shell: bash
       run: |
         SEMVER=`cat ${{inputs.path}} | grep -m 1 -o 'version:[^:]*' | cut -f2 -d":" | xargs`
-        echo "package-semantic-version=$SEMVER" >> $GITHUB_OUTPUT
+        echo "semantic-version=$SEMVER" >> $GITHUB_OUTPUT
         python ./read_semantic_version.py $SEMVER
