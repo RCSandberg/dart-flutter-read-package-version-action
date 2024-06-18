@@ -40,7 +40,24 @@ Having the line `version: 1.2.3+4` will produce the output:
 | ------------- | ------------- |
 | package-semantic-version  | 1.2.3+4  |
 | package-version  | 1.2.3  |
-| package-build-version  | 4  |
+| package-major  | 1  |
+| package-minor  | 2  |
+| package-patch  | 3  |
+| package-prerelease  | |
+| package-buildmetadata  | 4  |
+
+
+Having the line `version: 1.2.3-alpha-beta-321+build.42` will produce the output:
+
+| Output  | Value |
+| ------------- | ------------- |
+| package-semantic-version  | 1.2.3-alpha-beta-321+build.42  |
+| package-version  | 1.2.3  |
+| package-major  | 1  |
+| package-minor  | 2  |
+| package-patch  | 3  |
+| package-prerelease  | alpha-beta-321  |
+| package-build-version  | build.42  |
 
 
 ## Input
