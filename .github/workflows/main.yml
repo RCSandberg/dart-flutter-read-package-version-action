@@ -15,7 +15,7 @@ jobs:
       #
       # Trivial version
       #
-      - uses: ./action.yml
+      - uses: ./
         id: call-action
         with:
           path: assets/with-build.yaml
@@ -37,7 +37,7 @@ jobs:
       #
       # Semantic version with pre-release and build
       #
-      - uses: ./action.yml
+      - uses: ./
         id: call-action-2
         with:
           path: assets/with-prerelease-and-build.yaml
