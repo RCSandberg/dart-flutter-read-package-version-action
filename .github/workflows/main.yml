@@ -34,10 +34,6 @@ jobs:
         with:
           expected: 4
           actual: ${{ steps.call-action.outputs.package-buildmetadata }}
-
-      - run: echo "Read semantic version ${{ steps.call-action.outputs.package-semantic-version }}"
-      - run: echo "Read version ${{ steps.call-action.outputs.package-version }}"
-      - run: echo "Read version ${{ steps.call-action.outputs.package-buildmetadata }}"
       #
       # Complex with pre-release and build
       #
